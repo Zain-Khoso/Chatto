@@ -10,7 +10,7 @@ import {
 
 export default function CardsWrapper() {
     return (
-        <section className="w-full grid grid-cols-2 grid-rows-3 gap-2 p-4 max-w-5xl mx-auto tablet:grid-cols-3 tablet:grid-rows-2">
+        <section className="w-full grid grid-cols-2 grid-rows-3 gap-2 p-4 max-w-5xl mx-auto tablet:grid-cols-3 tablet:grid-rows-2 tablet:gap-8">
             <div className="flex flex-col gap-1 bg-gradient-to-b from-primary-200 to-primary-300 p-4 rounded-lg">
                 <div className="w-6 aspect-square">
                     <FaUserShield className="fill-light-200 w-full h-full" />

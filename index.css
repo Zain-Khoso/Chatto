@@ -10,3 +10,7 @@ body,
     @apply max-w-full;
     @apply min-h-dvh;
 }
+
+p {
+    text-decoration: none;
+}
