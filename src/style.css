@@ -591,32 +591,20 @@ video {
   width: 100%;
 }
 
-.max-w-2xl {
-  max-width: 42rem;
-}
-
 .max-w-3xl {
   max-width: 48rem;
-}
-
-.max-w-6xl {
-  max-width: 72rem;
 }
 
 .max-w-5xl {
   max-width: 64rem;
 }
 
-.max-w-lg {
-  max-width: 32rem;
+.max-w-md {
+  max-width: 28rem;
 }
 
 .max-w-sm {
   max-width: 24rem;
-}
-
-.max-w-md {
-  max-width: 28rem;
 }
 
 .grid-cols-2 {
@@ -647,16 +635,12 @@ video {
   gap: 0.25rem;
 }
 
-.gap-4 {
-  gap: 1rem;
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-8 {
   gap: 2rem;
-}
-
-.gap-2 {
-  gap: 0.5rem;
 }
 
 .rounded-lg {
@@ -821,7 +805,7 @@ body,
   background-color: rgb(240 240 240 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(11 9 11 / var(--tw-text-opacity));
-  width: 100dvw;
+  max-width: 100%;
   min-height: 100dvh;
 }
 

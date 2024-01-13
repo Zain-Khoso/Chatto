@@ -7,6 +7,6 @@ body,
 #root {
     @apply bg-light-200;
     @apply text-dark-400;
-    @apply w-dvw;
+    @apply max-w-full;
     @apply min-h-dvh;
 }
