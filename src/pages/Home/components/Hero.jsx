@@ -5,7 +5,7 @@ import ButtonGradiant from "../../../components/ButtonGradiant";
 
 export default function Hero() {
     return (
-        <section className="min-w-96 w-4/5 flex flex-col justify-center items-center gap-8 px-4 py-8 mx-auto tablet:flex-row-reverse tablet:my-12">
+        <section className="w-full max-w-sm flex flex-col justify-center items-center gap-8 px-4 py-8 mx-auto tablet:w-4/5 tablet:max-w-none tablet:flex-row-reverse tablet:my-12">
             <div className="w-full px-2 tablet:w-screen">
                 <img
                     src={illustration}
