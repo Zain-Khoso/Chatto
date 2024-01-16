@@ -1,7 +1,7 @@
-// Utils
-import PropTypes from "prop-types";
+// Types
+import { Props } from "@/types/displayBlanket.types";
 
-export default function DisplayBlanket({ show, handleClick }) {
+export default function DisplayBlanket({ show, handleClick }: Props) {
     return (
         show && (
             <div
@@ -14,9 +14,4 @@ export default function DisplayBlanket({ show, handleClick }) {
 DisplayBlanket.defaultProps = {
     show: false,
     handleClick: () => {},
-};
-
-DisplayBlanket.propTypes = {
-    show: PropTypes.bool,
-    handleClick: PropTypes.func,
 };

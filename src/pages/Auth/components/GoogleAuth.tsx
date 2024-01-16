@@ -3,21 +3,17 @@ import { useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, googleProvider } from "../../../configs/firebase";
+import { auth, googleProvider } from "@/configs/firebase";
 
 // Assets
-import GoogleLogo from "../../../assets/svgs/google.svg";
+import GoogleLogo from "@/assets/svgs/google.svg";
 
 // Components
-import ButtonDark from "../../../components/ButtonDark";
+import ButtonDark from "@/components/ButtonDark";
 
 export default function GoogleAuth() {
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
-
-    useLayoutEffect(() => {
-        if (user) navigate("/");
-    }, [user]);
 
     const signInWithGoogle = async function () {
         try {
@@ -26,6 +22,10 @@ export default function GoogleAuth() {
             console.error("Can't sign in with google at the moment.");
         }
     };
+
+    useLayoutEffect(() => {
+        if (user) navigate("/");
+    }, [user]);
 
     return (
         <ButtonDark handleClick={signInWithGoogle}>

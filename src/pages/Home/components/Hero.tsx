@@ -1,7 +1,9 @@
 // Assets
 import illustration from "../assets/svgs/heroIllustration.svg";
+
+// Components
 import HighlightedText from "./HighlightedText";
-import ButtonGradiant from "../../../components/ButtonGradiant";
+import ButtonGradiant from "@/components/ButtonGradiant";
 
 export default function Hero() {
     return (
