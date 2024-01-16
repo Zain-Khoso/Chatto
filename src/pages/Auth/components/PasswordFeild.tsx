@@ -1,13 +1,17 @@
 // Utils
-import { useState, useContext } from "react";
+import { useState, useContext, RefObject } from "react";
 import { Link } from "react-router-dom";
 import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa6";
-import { SignInForm } from "../contexts";
+import { context as formTypeContext } from "@/contexts/authFormType";
 
-export default function PasswordFeild({ nodeRef }) {
+export default function PasswordFeild({
+    nodeRef,
+}: {
+    nodeRef: RefObject<HTMLInputElement>;
+}) {
     const [visible, setVisible] = useState(false);
 
-    const { isSignIn } = useContext(SignInForm);
+    const { formType } = useContext(formTypeContext);
 
     return (
         <div className="w-full flex flex-col gap-2 justify-between items-end">
@@ -46,7 +50,7 @@ export default function PasswordFeild({ nodeRef }) {
                 )}
             </div>
 
-            {isSignIn ? (
+            {formType === "SIGN IN" ? (
                 <Link
                     to="/user/sign-up"
                     className="text-xs font-medium text-primary-200">

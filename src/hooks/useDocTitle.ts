@@ -1,7 +1,7 @@
 // Utils
 import { useLayoutEffect } from "react";
 
-export default function (page) {
+export default function (page: string) {
     useLayoutEffect(() => {
         document.title = `Chatto | ${page}`;
     }, []);

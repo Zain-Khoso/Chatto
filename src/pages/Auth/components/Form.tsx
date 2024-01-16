@@ -1,5 +1,5 @@
 // Utils
-import { useContext, useRef, useLayoutEffect } from "react";
+import { useContext, useRef, useLayoutEffect, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     createUserWithEmailAndPassword,
@@ -8,39 +8,37 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../configs/firebase";
 import { FaAt } from "react-icons/fa6";
-import { SignInForm } from "../contexts";
+import { context as formTypeContext } from "@/contexts/authFormType";
 
 // Components
-import ButtonGradiant from "../../../components/ButtonGradiant";
+import ButtonGradiant from "@/components/ButtonGradiant";
 import PasswordFeild from "./PasswordFeild";
 
 export default function Form() {
-    const { isSignIn } = useContext(SignInForm);
+    const { formType } = useContext(formTypeContext);
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
 
-    const form = useRef(null);
-    const email = useRef(null);
-    const password = useRef(null);
+    const form = useRef<HTMLFormElement>(null);
+    const email = useRef<HTMLInputElement>(null);
+    const password = useRef<HTMLInputElement>(null);
 
-    useLayoutEffect(() => {
-        if (user) navigate("/");
-    }, [user]);
-
-    const createUserAccount = async function (e) {
+    const createUserAccount = async function (e: FormEvent) {
         e.preventDefault();
 
-        const userEmail = email.current.value;
-        const userPassword = password.current.value;
+        const userEmail = email.current?.value;
+        const userPassword = password.current?.value;
 
-        if (isSignIn) {
+        if (!userEmail || !userPassword) return;
+
+        if (formType === "SIGN IN") {
             try {
                 await signInWithEmailAndPassword(auth, userEmail, userPassword);
             } catch (err) {
                 alert("Email or password incorrect");
+            } finally {
+                return;
             }
-
-            return;
         }
 
         try {
@@ -48,9 +46,13 @@ export default function Form() {
         } catch (err) {
             alert("Email or password invalid");
         } finally {
-            form.current.reset();
+            form.current?.reset();
         }
     };
+
+    useLayoutEffect(() => {
+        if (user) navigate("/");
+    }, [user]);
 
     return (
         <form
@@ -79,8 +81,8 @@ export default function Form() {
 
             <PasswordFeild nodeRef={password} />
 
-            <ButtonGradiant width="w-4/5" type="submit">
-                {isSignIn ? "Sign In" : "Sign Up"}
+            <ButtonGradiant width="w-4/5" btnType="submit">
+                {formType === "SIGN IN" ? "Sign In" : "Sign Up"}
             </ButtonGradiant>
         </form>
     );

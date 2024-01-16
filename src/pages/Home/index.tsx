@@ -1,5 +1,5 @@
 // Utils
-import useDocTitle from "../../hooks/useDocTitle";
+import useDocTitle from "@/hooks/useDocTitle";
 
 // Components
 import TopBar from "./components/TopBar";
