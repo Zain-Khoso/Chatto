@@ -8,7 +8,7 @@ import { useAuthState, AuthStateHook } from "react-firebase-hooks/auth";
 import { auth } from "../../../configs/firebase";
 import { FaAt } from "react-icons/fa6";
 import { context as formTypeContext } from "@/contexts/authFormType";
-import useChatNavigate from "@/hooks/useChatNavigate";
+import useChatNavigate from "@/hooks/useNavigateChat";
 
 // Components
 import ButtonGradiant from "@/components/ButtonGradiant";

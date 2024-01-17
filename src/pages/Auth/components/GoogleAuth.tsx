@@ -2,7 +2,7 @@
 import { signInWithPopup } from "firebase/auth";
 import { useAuthState, AuthStateHook } from "react-firebase-hooks/auth";
 import { auth, googleProvider } from "@/configs/firebase";
-import useChatNavigate from "@/hooks/useChatNavigate";
+import useChatNavigate from "@/hooks/useNavigateChat";
 
 // Assets
 import GoogleLogo from "@/assets/svgs/google.svg";
