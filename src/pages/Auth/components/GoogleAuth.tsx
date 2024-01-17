@@ -11,15 +11,15 @@ import GoogleLogo from "@/assets/svgs/google.svg";
 import ButtonDark from "@/components/ButtonDark";
 
 export default function GoogleAuth() {
-    const [user]: AuthStateHook = useAuthState(auth);
+    const [user, _, error]: AuthStateHook = useAuthState(auth);
 
-    useChatNavigate(user ? true : false);
+    useChatNavigate(user || error ? true : false);
 
     const signInWithGoogle = async function () {
         try {
             await signInWithPopup(auth, googleProvider);
         } catch (err) {
-            console.error("Can't sign in with google at the moment.");
+            alert("Can't log you in with google at the moment.");
         }
     };
 

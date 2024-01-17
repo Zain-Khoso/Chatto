@@ -1,15 +1,14 @@
 // Utils
-import { useState, RefObject } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa6";
 import { selectAuthSlice } from "@/contexts/authSlice";
 
-export default function PasswordFeild({
-    nodeRef,
-}: {
-    nodeRef: RefObject<HTMLInputElement>;
-}) {
+// Types
+import { Props } from "@/types/passwordField.types";
+
+export default function PasswordFeild({ nodeRef, formError }: Props) {
     // Store Access
     const { formType } = useSelector(selectAuthSlice);
 
@@ -17,7 +16,18 @@ export default function PasswordFeild({
 
     return (
         <div className="w-full flex flex-col gap-2 justify-between items-end">
-            <div className="w-full flex justify-between items-center gap-2 p-4 rounded-md shadow-[0px_0px_4px_1px_rgba(0,0,0,0.15);]">
+            <div
+                className={`relative w-full flex justify-between items-center gap-2 p-4 rounded-md shadow-[0px_0px_4px_1px_rgba(0,0,0,0.15);] ${
+                    formError ? "border border-[rgba(255,0,0,.5)]" : ""
+                }`}>
+                <span
+                    className={
+                        formError
+                            ? "absolute -top-1/2 left-0 text-[rgb(255,0,0)]"
+                            : "fixed -left-full"
+                    }>
+                    Password Invalid
+                </span>
                 <div className="w-full flex flex-row-reverse justify-start items-center gap-2 peer">
                     <label htmlFor="email" className="fixed -left-full">
                         Password

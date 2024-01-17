@@ -1,5 +1,5 @@
 // Utils
-import { useRef, FormEvent } from "react";
+import { useRef, useState, FormEvent } from "react";
 import { useSelector } from "react-redux";
 import {
     createUserWithEmailAndPassword,
@@ -19,9 +19,10 @@ export default function Form() {
     // Store Access
     const { formType } = useSelector(selectAuthSlice);
 
-    const [user]: AuthStateHook = useAuthState(auth);
+    const [user, _, error]: AuthStateHook = useAuthState(auth);
+    const [formError, setFormError] = useState<boolean>(false);
 
-    useChatNavigate(user ? true : false);
+    useChatNavigate(user || error ? true : false);
 
     const form = useRef<HTMLFormElement>(null);
     const email = useRef<HTMLInputElement>(null);
@@ -35,34 +36,53 @@ export default function Form() {
 
         if (!userEmail || !userPassword) return;
 
-        if (formType === "SIGN IN") {
-            try {
-                await signInWithEmailAndPassword(auth, userEmail, userPassword);
-            } catch (err) {
-                alert("Email or password incorrect");
-            } finally {
-                return;
-            }
-        }
-
         try {
-            await createUserWithEmailAndPassword(auth, userEmail, userPassword);
-        } catch (err) {
-            alert("Email or password invalid");
-        } finally {
+            switch (formType) {
+                case "SIGN IN":
+                    await signInWithEmailAndPassword(
+                        auth,
+                        userEmail,
+                        userPassword
+                    );
+                    break;
+
+                case "SIGN UP":
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        userEmail,
+                        userPassword
+                    );
+                    break;
+            }
+
             form.current?.reset();
+        } catch (err) {
+            setFormError(true);
+        } finally {
+            return;
         }
     };
 
     return (
         <form
             ref={form}
-            className="w-full flex flex-col justify-center items-center gap-6"
+            className="w-full flex flex-col justify-center items-center gap-8"
             onSubmit={createUserAccount}>
-            <div className="w-full flex flex-row-reverse justify-start items-center gap-2 p-4 rounded-md shadow-[0px_0px_4px_1px_rgba(0,0,0,0.15);]">
+            <div
+                className={`relative w-full flex flex-row-reverse justify-start items-center gap-2 p-4 rounded-md shadow-[0px_0px_4px_1px_rgba(0,0,0,0.15);] ${
+                    formError ? "border border-[rgba(255,0,0,.5)]" : ""
+                }`}>
                 <label htmlFor="email" className="fixed -left-full">
                     Email
                 </label>
+                <span
+                    className={
+                        formError
+                            ? "absolute -top-1/2 left-0 text-[rgb(255,0,0)]"
+                            : "fixed -left-full"
+                    }>
+                    Email Invalid
+                </span>
                 <input
                     ref={email}
                     type="email"
@@ -79,7 +99,7 @@ export default function Form() {
                 <FaAt className="w-8 aspect-square fill-dark-100 peer-focus:fill-dark-400" />
             </div>
 
-            <PasswordFeild nodeRef={password} />
+            <PasswordFeild nodeRef={password} formError={formError} />
 
             <ButtonGradiant width="w-4/5" btnType="submit">
                 {formType === "SIGN IN" ? "Sign In" : "Sign Up"}
