@@ -1,17 +1,19 @@
 // Utils
-import { useState, useContext, RefObject } from "react";
+import { useState, RefObject } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa6";
-import { context as formTypeContext } from "@/contexts/authFormType";
+import { selectAuthSlice } from "@/contexts/authSlice";
 
 export default function PasswordFeild({
     nodeRef,
 }: {
     nodeRef: RefObject<HTMLInputElement>;
 }) {
-    const [visible, setVisible] = useState(false);
+    // Store Access
+    const { formType } = useSelector(selectAuthSlice);
 
-    const { formType } = useContext(formTypeContext);
+    const [visible, setVisible] = useState(false);
 
     return (
         <div className="w-full flex flex-col gap-2 justify-between items-end">

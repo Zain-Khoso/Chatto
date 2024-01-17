@@ -1,13 +1,14 @@
 // Utils
-import { useContext, useRef, FormEvent } from "react";
+import { useRef, FormEvent } from "react";
+import { useSelector } from "react-redux";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useAuthState, AuthStateHook } from "react-firebase-hooks/auth";
-import { auth } from "../../../configs/firebase";
 import { FaAt } from "react-icons/fa6";
-import { context as formTypeContext } from "@/contexts/authFormType";
+import { selectAuthSlice } from "@/contexts/authSlice";
+import { auth } from "@/configs/firebase";
 import useChatNavigate from "@/hooks/useNavigateChat";
 
 // Components
@@ -15,7 +16,9 @@ import ButtonGradiant from "@/components/ButtonGradiant";
 import PasswordFeild from "./PasswordFeild";
 
 export default function Form() {
-    const { formType } = useContext(formTypeContext);
+    // Store Access
+    const { formType } = useSelector(selectAuthSlice);
+
     const [user]: AuthStateHook = useAuthState(auth);
 
     useChatNavigate(user ? true : false);
