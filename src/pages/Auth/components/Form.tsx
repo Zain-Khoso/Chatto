@@ -1,14 +1,14 @@
 // Utils
-import { useContext, useRef, useLayoutEffect, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useRef, FormEvent } from "react";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useAuthState, AuthStateHook } from "react-firebase-hooks/auth";
 import { auth } from "../../../configs/firebase";
 import { FaAt } from "react-icons/fa6";
 import { context as formTypeContext } from "@/contexts/authFormType";
+import useChatNavigate from "@/hooks/useChatNavigate";
 
 // Components
 import ButtonGradiant from "@/components/ButtonGradiant";
@@ -16,8 +16,9 @@ import PasswordFeild from "./PasswordFeild";
 
 export default function Form() {
     const { formType } = useContext(formTypeContext);
-    const [user] = useAuthState(auth);
-    const navigate = useNavigate();
+    const [user]: AuthStateHook = useAuthState(auth);
+
+    useChatNavigate(user ? true : false);
 
     const form = useRef<HTMLFormElement>(null);
     const email = useRef<HTMLInputElement>(null);
@@ -49,10 +50,6 @@ export default function Form() {
             form.current?.reset();
         }
     };
-
-    useLayoutEffect(() => {
-        if (user) navigate("/");
-    }, [user]);
 
     return (
         <form
