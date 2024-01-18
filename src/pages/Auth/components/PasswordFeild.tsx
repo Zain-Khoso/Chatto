@@ -38,10 +38,7 @@ export default function PasswordFeild({ register, errors }: PasswordProps) {
                         type={visible ? "text" : "password"}
                         id="password"
                         aria-label="Write your password."
-                        minLength={8}
-                        {...register("password", {
-                            required: "You must have to provide a password",
-                        })}
+                        {...register("password")}
                         className="w-full h-full font-medium text-dark-400 bg-light-200 caret-primary-300  placeholder:text-dark-100 peer focus:outline-none"
                         placeholder="Password"
                     />

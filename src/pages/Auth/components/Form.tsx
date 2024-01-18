@@ -7,13 +7,14 @@ import {
 } from "firebase/auth";
 import { useAuthState, AuthStateHook } from "react-firebase-hooks/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FaAt } from "react-icons/fa6";
 import { selectAuthSlice } from "@/contexts/authSlice";
 import { auth } from "@/configs/firebase";
 import useChatNavigate from "@/hooks/useNavigateChat";
 
 // Props
-import { FormFields } from "@/types/authForm.types";
+import { FormSchema, FormFields } from "@/types/authForm.types";
 
 // Components
 import ButtonGradiant from "@/components/ButtonGradiant";
@@ -35,7 +36,7 @@ export default function Form() {
         handleSubmit,
         setError,
         formState: { errors },
-    } = useForm<FormFields>();
+    } = useForm<FormFields>({ resolver: zodResolver(FormSchema) });
 
     const onSubmit: SubmitHandler<FormFields> = async function (data) {
         try {
@@ -58,7 +59,17 @@ export default function Form() {
             }
             form.current?.reset();
         } catch {
-            setError("root", { message: "This email is already in use." });
+            switch (formType) {
+                case "SIGN IN":
+                    setError("root", { message: "Invalid email or password." });
+                    break;
+
+                case "SIGN UP":
+                    setError("root", {
+                        message: "This email is already in use.",
+                    });
+                    break;
+            }
         }
     };
 
@@ -88,9 +99,7 @@ export default function Form() {
                     type="email"
                     id="email"
                     aria-label="Write your email."
-                    {...register("email", {
-                        required: "You must have to provide an email.",
-                    })}
+                    {...register("email")}
                     className="w-full h-full font-medium text-dark-400 bg-light-200 caret-primary-300  placeholder:text-dark-100 peer focus:outline-none"
                     placeholder="Email"
                 />
