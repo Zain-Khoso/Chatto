@@ -31,7 +31,13 @@ export default {
             desktop: "1024px",
         },
 
-        extend: {},
+        extend: {
+            keyframes: {
+                swiftSpin: {
+                    to: { rotate: "-360deg" },
+                },
+            },
+        },
     },
     plugins: [],
 };

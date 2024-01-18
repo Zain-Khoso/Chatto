@@ -670,6 +670,10 @@ video {
   width: 40% !important;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -719,6 +723,10 @@ video {
   min-width: 100%;
 }
 
+.max-w-20 {
+  max-width: 5rem;
+}
+
 .max-w-5xl {
   max-width: 64rem;
 }
@@ -751,6 +759,16 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+@keyframes swiftSpin {
+  to {
+    rotate: -360deg;
+  }
+}
+
+.animate-\[swiftSpin_1s_linear_infinite\] {
+  animation: swiftSpin 1s linear infinite;
+}
+
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -765,6 +783,10 @@ video {
 
 .flex-col {
   flex-direction: column;
+}
+
+.place-items-center {
+  place-items: center;
 }
 
 .items-start {
