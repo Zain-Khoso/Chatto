@@ -10,7 +10,7 @@ import { PasswordProps } from "@/types/authForm.types";
 
 export default function PasswordFeild({ register, errors }: PasswordProps) {
     // Store Access
-    const { formType } = useSelector(selectAuthSlice);
+    const formType = useSelector(selectAuthSlice);
 
     const [visible, setVisible] = useState(false);
 
