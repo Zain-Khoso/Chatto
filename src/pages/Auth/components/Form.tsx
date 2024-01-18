@@ -9,7 +9,7 @@ import { useAuthState, AuthStateHook } from "react-firebase-hooks/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaAt } from "react-icons/fa6";
-import { selectAuthSlice } from "@/contexts/authSlice";
+import { selectAuthSlice } from "@/contexts/formSlice";
 import { auth } from "@/configs/firebase";
 import useChatNavigate from "@/hooks/useNavigateChat";
 
@@ -22,7 +22,7 @@ import PasswordFeild from "./PasswordFeild";
 
 export default function Form() {
     // Store Access
-    const { formType } = useSelector(selectAuthSlice);
+    const formType = useSelector(selectAuthSlice);
 
     const [user, _, error]: AuthStateHook = useAuthState(auth);
 

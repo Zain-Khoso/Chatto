@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa6";
-import { selectAuthSlice } from "@/contexts/authSlice";
+import { selectAuthSlice } from "@/contexts/formSlice";
 
 // Types
 import { PasswordProps } from "@/types/authForm.types";

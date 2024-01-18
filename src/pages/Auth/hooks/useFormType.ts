@@ -1,10 +1,10 @@
 // Utils
 import { useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setFormTo } from "@/contexts/authSlice";
+import { setFormTo } from "@/contexts/formSlice";
 
 // Types
-import { FormType } from "@/types/authSlice.types";
+import { FormType } from "@/types/formSlice.types";
 
 export default function useFormType(type: FormType) {
     // Store Access

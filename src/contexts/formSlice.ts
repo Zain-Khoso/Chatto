@@ -3,13 +3,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Types
 import { RootState } from "@/types";
-import { InitialState, FormType } from "@/types/authSlice.types";
+import { InitialState, FormType } from "@/types/formSlice.types";
 
 // Initial Slice State.
 const initialState: InitialState = {
-    value: {
-        formType: "SIGN IN",
-    },
+    value: "SIGN IN",
 };
 
 // Store State Slice.
@@ -18,7 +16,7 @@ const slice = createSlice({
     initialState,
     reducers: {
         setFormTo(state, action: PayloadAction<FormType>) {
-            state.value.formType = action.payload;
+            state.value = action.payload;
         },
     },
 });
