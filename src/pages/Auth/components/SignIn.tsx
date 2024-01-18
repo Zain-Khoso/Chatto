@@ -16,7 +16,7 @@ export default function SignIn() {
                 <div className="w-[130%] h-full hidden justify-center items-center bg-gradient-to-br from-primary-200 to-primary-300 p-4 desktop:flex">
                     <img src={Illustration} alt="simple Sign In Illustration" />
                 </div>
-                <div className="w-full h-full flex flex-col justify-center items-center gap-16">
+                <div className="w-full h-full flex flex-col justify-center items-center gap-8">
                     <h1 className="text-4xl font-brand font-bold text-transparent bg-gradient-to-br from-primary-200 to-primary-300 bg-clip-text">
                         Welcome back !
                     </h1>

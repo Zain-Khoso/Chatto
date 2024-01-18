@@ -24,11 +24,11 @@ export default function PasswordFeild({ register, errors }: PasswordProps) {
                 }`}>
                 <span
                     className={
-                        errors?.root || errors?.password
+                        errors?.password
                             ? "absolute -top-1/2 left-0 text-[rgb(255,0,0)]"
                             : "fixed -left-full"
                     }>
-                    Password Invalid
+                    {errors.password?.message}
                 </span>
                 <div className="w-full flex flex-row-reverse justify-start items-center gap-2 peer">
                     <label htmlFor="email" className="fixed -left-full">

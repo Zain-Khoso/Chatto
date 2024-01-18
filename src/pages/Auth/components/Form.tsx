@@ -78,11 +78,11 @@ export default function Form() {
                 </label>
                 <span
                     className={
-                        errors.root || errors.email
+                        errors.email
                             ? "absolute -top-1/2 left-0 text-[rgb(255,0,0)]"
                             : "fixed -left-full"
                     }>
-                    Email Invalid
+                    {errors.email?.message}
                 </span>
                 <input
                     type="email"
@@ -105,6 +105,11 @@ export default function Form() {
             <ButtonGradiant width="w-4/5" btnType="submit">
                 {formType === "SIGN IN" ? "Sign In" : "Sign Up"}
             </ButtonGradiant>
+            {errors.root && (
+                <span className={"text-[rgb(255,0,0)]"}>
+                    {errors.root.message}
+                </span>
+            )}
         </form>
     );
 }
