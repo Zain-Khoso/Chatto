@@ -1,29 +1,47 @@
 // Utils
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import Spinner from "./components/Spinner";
 
 // Components
-import Home from "@/pages/Home";
-import Auth from "@/pages/Auth";
-import SignIn from "@/pages/Auth/components/SignIn";
-import SignUp from "@/pages/Auth/components/SignUp";
+const Home = lazy(() => import("@/pages/Home"));
+const Auth = lazy(() => import("@/pages/Auth"));
+const SignIn = lazy(() => import("@/pages/Auth/components/SignIn"));
+const SignUp = lazy(() => import("@/pages/Auth/components/SignUp"));
 
 // Router Setup
 export default createBrowserRouter([
     {
         path: "/",
-        element: <Home />,
+        element: (
+            <Suspense fallback={<Spinner />}>
+                <Home />
+            </Suspense>
+        ),
     },
     {
         path: "/user",
-        element: <Auth />,
+        element: (
+            <Suspense fallback={<Spinner />}>
+                <Auth />
+            </Suspense>
+        ),
         children: [
             {
                 path: "sign-in",
-                element: <SignIn />,
+                element: (
+                    <Suspense fallback={<Spinner />}>
+                        <SignIn />
+                    </Suspense>
+                ),
             },
             {
                 path: "sign-up",
-                element: <SignUp />,
+                element: (
+                    <Suspense fallback={<Spinner />}>
+                        <SignUp />
+                    </Suspense>
+                ),
             },
         ],
     },

@@ -1,9 +1,15 @@
 // Utils
-import { Dispatch } from "react";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { z } from "zod";
 
-export type formType = "SIGN IN" | "SIGN UP";
+export const FormSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(8),
+});
 
-export type formTypeContext = {
-    formType: formType;
-    formTypeReducer: Dispatch<formType>;
+export type FormFields = z.infer<typeof FormSchema>;
+
+export type PasswordProps = {
+    register: UseFormRegister<FormFields>;
+    errors: FieldErrors<FormFields>;
 };

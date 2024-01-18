@@ -1,16 +1,18 @@
 // Utils
-import { useContext, useLayoutEffect } from "react";
-import { context } from "@/contexts/authFormType";
+import { useLayoutEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setFormTo } from "@/contexts/formSlice";
 
 // Types
-import { formType } from "@/types/authForm.types";
+import { FormType } from "@/types/formSlice.types";
 
-export default function useFormType(type: formType) {
-    const { formTypeReducer } = useContext(context);
+export default function useFormType(type: FormType) {
+    // Store Access
+    const dispatch = useDispatch();
 
     useLayoutEffect(() => {
-        if (type === "SIGN IN") formTypeReducer("SIGN IN");
-        else formTypeReducer("SIGN UP");
+        if (type === "SIGN IN") dispatch(setFormTo("SIGN IN"));
+        else dispatch(setFormTo("SIGN UP"));
     }, []);
 
     return;
