@@ -1009,6 +1009,10 @@ video {
   text-align: center;
 }
 
+.font-body {
+  font-family: Roboto, sans-serif;
+}
+
 .font-brand {
   font-family: Montserrat, sans-serif;
 }

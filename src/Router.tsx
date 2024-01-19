@@ -1,7 +1,8 @@
 // Utils
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Spinner from "./components/Spinner";
+import Spinner from "@/components/Spinner";
+import Error from "@/components/Error";
 
 // Components
 const Home = lazy(() => import("@/pages/Home"));
@@ -18,6 +19,7 @@ export default createBrowserRouter([
                 <Home />
             </Suspense>
         ),
+        errorElement: <Error />,
     },
     {
         path: "/user",
@@ -26,6 +28,7 @@ export default createBrowserRouter([
                 <Auth />
             </Suspense>
         ),
+        errorElement: <Error />,
         children: [
             {
                 path: "sign-in",
@@ -34,6 +37,7 @@ export default createBrowserRouter([
                         <SignIn />
                     </Suspense>
                 ),
+                errorElement: <Error />,
             },
             {
                 path: "sign-up",
@@ -42,6 +46,7 @@ export default createBrowserRouter([
                         <SignUp />
                     </Suspense>
                 ),
+                errorElement: <Error />,
             },
         ],
     },
