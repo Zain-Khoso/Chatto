@@ -9,11 +9,21 @@ const Home = lazy(() => import("@/pages/Home"));
 const Auth = lazy(() => import("@/pages/Auth"));
 const SignIn = lazy(() => import("@/pages/Auth/components/SignIn"));
 const SignUp = lazy(() => import("@/pages/Auth/components/SignUp"));
+const Chat = lazy(() => import("@/pages/Chat"));
 
 // Router Setup
 export default createBrowserRouter([
     {
         path: "/",
+        element: (
+            <Suspense fallback={<Spinner />}>
+                <Chat />
+            </Suspense>
+        ),
+        errorElement: <Error />,
+    },
+    {
+        path: "/home",
         element: (
             <Suspense fallback={<Spinner />}>
                 <Home />
