@@ -23,6 +23,7 @@ export default function SideNav() {
                             Chats
                         </h2>
                     </div>
+
                     <ChatList />
                 </section>
             </main>

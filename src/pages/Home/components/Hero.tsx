@@ -1,3 +1,6 @@
+// Utils
+import { Link } from "react-router-dom";
+
 // Assets
 import illustration from "../assets/svgs/heroIllustration.svg";
 
@@ -24,7 +27,9 @@ export default function Hero() {
                     !
                 </p>
 
-                <ButtonGradiant>Start Chatting</ButtonGradiant>
+                <Link to="/">
+                    <ButtonGradiant>Start Chatting</ButtonGradiant>
+                </Link>
             </div>
         </section>
     );
