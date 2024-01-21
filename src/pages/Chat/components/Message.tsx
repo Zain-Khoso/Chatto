@@ -8,7 +8,7 @@ export default function Message({ type, photo, text }: MessageProps) {
     if (type === "RECIEVING")
         return (
             <div className="w-11/12 self-start flex flex-col items-start">
-                <p className="bg-primary-200 text-light-100 p-2 rounded-md ml-10 rounded-bl-none">
+                <p className="bg-primary-200 text-light-100 p-2 rounded-md ml-8 rounded-bl-none">
                     {text}
                 </p>
                 {photo ? (
@@ -25,7 +25,7 @@ export default function Message({ type, photo, text }: MessageProps) {
 
     return (
         <div className="w-11/12 self-end flex flex-col items-end">
-            <p className="bg-primary-100 text-dark-400 p-2 rounded-md mr-10 rounded-br-none">
+            <p className="bg-primary-100 text-dark-400 p-2 rounded-md mr-8 rounded-br-none">
                 {text}
             </p>
             {photo ? (

@@ -568,10 +568,6 @@ video {
   inset: 0px;
 }
 
-.-left-\[200dvw\] {
-  left: -200dvw;
-}
-
 .-left-full {
   left: -100%;
 }
@@ -625,17 +621,12 @@ video {
   margin-right: auto;
 }
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+.ml-8 {
+  margin-left: 2rem;
 }
 
-.ml-10 {
-  margin-left: 2.5rem;
-}
-
-.mr-10 {
-  margin-right: 2.5rem;
+.mr-8 {
+  margin-right: 2rem;
 }
 
 .block {
@@ -933,26 +924,12 @@ video {
   border-width: 1px;
 }
 
-.border-b-2 {
-  border-bottom-width: 2px;
-}
-
 .border-t {
   border-top-width: 1px;
 }
 
 .border-\[rgba\(255\2c 0\2c 0\2c \.5\)\] {
   border-color: rgba(255,0,0,.5);
-}
-
-.border-dark-100 {
-  --tw-border-opacity: 1;
-  border-color: rgb(65 57 65 / var(--tw-border-opacity));
-}
-
-.border-dark-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(55 47 55 / var(--tw-border-opacity));
 }
 
 .border-dark-300 {
@@ -1086,11 +1063,6 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -1098,10 +1070,6 @@ video {
 
 .pb-16 {
   padding-bottom: 4rem;
-}
-
-.pr-4 {
-  padding-right: 1rem;
 }
 
 .pt-4 {
@@ -1123,11 +1091,6 @@ video {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .text-4xl {
@@ -1221,12 +1184,6 @@ video {
   caret-color: #001852;
 }
 
-.shadow-\[0px_0px_10px_4px_rgba\(0\2c 0\2c 0\2c 0\.2\)\;\] {
-  --tw-shadow: 0px 0px 10px 4px rgba(0,0,0,0.2);;
-  --tw-shadow-colored: 0px 0px 10px 4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-\[0px_0px_4px_1px_rgba\(0\2c 0\2c 0\2c 0\.15\)\;\] {
   --tw-shadow: 0px 0px 4px 1px rgba(0,0,0,0.15);;
   --tw-shadow-colored: 0px 0px 4px 1px var(--tw-shadow-color);
@@ -1303,10 +1260,6 @@ p {
   cursor: pointer;
 }
 
-.hover\:bg-\[rgba\(0\2c 0\2c 0\2c 0\.1\)\;\]:hover {
-  background-color: rgba(0,0,0,0.1);;
-}
-
 .hover\:bg-\[length\:100\%_3px\]:hover {
   background-size: 100% 3px;
 }
@@ -1317,10 +1270,6 @@ p {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.focus\:border-r-2:focus {
-  border-right-width: 2px;
-}
-
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -1328,10 +1277,6 @@ p {
 
 .peer:focus-within ~ .peer-focus-within\:fill-dark-400 {
   fill: #0B090B;
-}
-
-.peer:focus ~ .peer-focus\:block {
-  display: block;
 }
 
 .peer:focus ~ .peer-focus\:bg-dark-400 {
