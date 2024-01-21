@@ -1,7 +1,11 @@
 // Utils
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/configs/firebase";
 import useNavigateHome from "@/hooks/useNavigateHome";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { firestore } from "@/configs/firebase";
 import { FaArrowLeft } from "react-icons/fa";
 
 // Components
@@ -9,12 +13,57 @@ import User from "./components/User";
 import Message from "./components/Message";
 import Writer from "./components/Writer";
 import Spinner from "@/components/Spinner";
-import { Link } from "react-router-dom";
+import Error from "@/components/Error";
 
 export default function Chat() {
-    const [user, isLoading, error] = useAuthState(auth);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [data, setData] = useState<any>(undefined);
 
-    useNavigateHome(isLoading ? false : !user || error ? true : false);
+    const [user, userLoading, userError] = useAuthState(auth);
+
+    useNavigateHome(userLoading ? false : !user || userError ? true : false);
+
+    // const dispatch = useDispatch();
+    // const { isLoading, error, data } = useSelector(selectMessagesSlice);
+
+    useEffect(() => {
+        const fetchMessages = async function () {
+            setIsLoading(true);
+            try {
+                const collectionRef = collection(firestore, "messages");
+                const messageQuery = query(
+                    collectionRef,
+                    where("uid", "!=", "123")
+                );
+                const response = await getDocs(messageQuery);
+
+                setData(
+                    response.docs.map(function (doc: any) {
+                        const item: any =
+                            doc._document.data.value.mapValue.fields;
+                        const filteredItem: any = {};
+
+                        Object.keys(item).forEach((key: any) => {
+                            filteredItem[key] = Object.values(item[key])[0];
+                        });
+
+                        filteredItem["id"] = doc.id;
+
+                        return filteredItem;
+                    })
+                );
+            } catch (err) {
+                console.error(err);
+                setError(true);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchMessages();
+    }, []);
+
+    if (error) return <Error />;
 
     return (
         <div className="w-dvw h-dvh flex flex-col">
@@ -29,13 +78,17 @@ export default function Chat() {
                 {isLoading ? (
                     <Spinner />
                 ) : (
-                    <Message
-                        type="SENDING"
-                        photo={user?.photoURL}
-                        text="Some message you will want to read But you cant read am just checkto see that everything is working as aspected and if not i will try and fix it."
-                    />
+                    data?.map((item: any) => (
+                        <Message
+                            key={item.id}
+                            type={
+                                item.uid === user?.uid ? "SENDING" : "RECIEVING"
+                            }
+                            photo={item.photo}
+                            text={item.text}
+                        />
+                    ))
                 )}
-
                 <Writer />
             </main>
         </div>
