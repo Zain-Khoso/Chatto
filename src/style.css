@@ -682,6 +682,14 @@ video {
   max-height: 4rem;
 }
 
+.max-h-dvh {
+  max-height: 100dvh;
+}
+
+.max-h-full {
+  max-height: 100%;
+}
+
 .\!w-2\/5 {
   width: 40% !important;
 }
@@ -871,6 +879,10 @@ video {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .text-balance {

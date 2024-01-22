@@ -1,14 +1,40 @@
 // Utils
+import React, { useRef } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import { auth, firestore } from "@/configs/firebase";
 
 export default function Writer() {
+    const [user] = useAuthState(auth);
+    const messages = collection(firestore, "messages");
+
+    const msgEntry = useRef<HTMLInputElement | null>(null);
+
+    const addMesssage = function (event: React.SyntheticEvent) {
+        event.preventDefault();
+
+        if (msgEntry.current?.value.trim().length === 0) return;
+
+        addDoc(messages, {
+            uid: user?.uid,
+            photo: user?.photoURL,
+            text: msgEntry.current?.value,
+        });
+
+        if (msgEntry.current) msgEntry.current.value = "";
+    };
+
     return (
-        <form className="absolute left-0 bottom-0 flex justify-center items-center gap-4 w-dvw max-h-16 bg-primary-100 p-2 rounded-t-lg">
+        <form
+            onSubmit={addMesssage}
+            className="fixed left-0 bottom-0 flex justify-center items-center gap-4 w-dvw max-h-16 bg-primary-100 p-2 rounded-t-lg">
             <div className="flex-1 flex justify-center items-center gap-2 h-full bg-light-200 p-2 rounded-lg">
                 <label htmlFor="messageInput" className="fixed -left-full">
                     Type Your Message here
                 </label>
                 <input
+                    ref={msgEntry}
                     type="text"
                     id="messageInput"
                     placeholder="Type Message..."
