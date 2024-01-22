@@ -59,7 +59,7 @@ export default function Chat() {
     if (error) return <Error />;
 
     return (
-        <div className="w-dvw max-h-dvh flex flex-col">
+        <div className="w-dvw max-h-dvh flex flex-col m-auto desktop:max-w-screen-desktop">
             <header className="w-full flex justify-start items-center gap-2 bg-light-200 py-2 px-4">
                 <Link to="/home">
                     <FaArrowLeft size={30} />

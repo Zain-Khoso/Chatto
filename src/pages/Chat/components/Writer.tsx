@@ -28,7 +28,7 @@ export default function Writer() {
     return (
         <form
             onSubmit={addMesssage}
-            className="fixed left-0 bottom-0 flex justify-center items-center gap-4 w-dvw max-h-16 bg-primary-100 p-2 rounded-t-lg">
+            className="fixed left-0 bottom-0 flex justify-center items-center gap-4 w-dvw max-h-16 bg-primary-100 p-2 rounded-t-lg  desktop:max-w-screen-desktop desktop:left-1/2 desktop:-translate-x-1/2">
             <div className="flex-1 flex justify-center items-center gap-2 h-full bg-light-200 p-2 rounded-lg">
                 <label htmlFor="messageInput" className="fixed -left-full">
                     Type Your Message here

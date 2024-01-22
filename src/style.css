@@ -616,6 +616,10 @@ video {
   z-index: 40;
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1348,6 +1352,10 @@ p {
 }
 
 @media (min-width: 1024px) {
+  .desktop\:left-1\/2 {
+    left: 50%;
+  }
+
   .desktop\:flex {
     display: flex;
   }
@@ -1366,5 +1374,14 @@ p {
 
   .desktop\:w-4\/5 {
     width: 80%;
+  }
+
+  .desktop\:max-w-screen-desktop {
+    max-width: 1024px;
+  }
+
+  .desktop\:-translate-x-1\/2 {
+    --tw-translate-x: -50%;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 }
